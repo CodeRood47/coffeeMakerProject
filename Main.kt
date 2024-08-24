@@ -1,12 +1,30 @@
 package machine
 // ingredients for coffee cups
-var coffee = 15 // gram
-var water = 200 // millilitre
-var milk = 50 // millilitre
+
+var coffee = 0 // gram
+var water = 0 // millilitre
+var milk = 0 // millilitre
+var cost = 0
+
+
+
+var waterInmachine = 400
+var milkInMachine = 540
+var coffeeInmachine = 120
+var cups = 9
+var money = 550
 
 
 fun main() {
 
+    println("The coffee machine has:\n" +
+            "$waterInmachine ml of water\n" +
+            "$milkInMachine ml of milk\n" +
+            "$coffeeInmachine g of coffee beans\n" +
+            "$cups disposable cups\n" +
+            "$money of money")
+    println()
+    print("Write action (buy, fill, take): > ")
     val action = readln()
 
     when (action) {
@@ -15,80 +33,108 @@ fun main() {
             val coffeeVariant = readln().toInt()
             when (coffeeVariant){
                 1 -> {
+                    water = 250
+                    coffee = 16
+                    cost = 4
+
+                    waterInmachine -= water
+                    coffeeInmachine -= coffee
+                    money += cost
+                    cups -= 1
+
+                    println("The coffee machine has:\n" +
+                            "$waterInmachine ml of water\n" +
+                            "$milkInMachine ml of milk\n" +
+                            "$coffeeInmachine g of coffee beans\n" +
+                            "$cups disposable cups\n" +
+                            "$money of money")
 
                 }
                 2 -> {
+                    water = 350
+                    milk = 75
+                    coffee = 20
+                    cost = 7
 
+                    waterInmachine -= water
+                    coffeeInmachine -= coffee
+                    milkInMachine -= milk
+                    money += cost
+                    cups -= 1
+
+                    println("The coffee machine has:\n" +
+                            "$waterInmachine ml of water\n" +
+                            "$milkInMachine ml of milk\n" +
+                            "$coffeeInmachine g of coffee beans\n" +
+                            "$cups disposable cups\n" +
+                            "$money of money")
                 }
                 3 -> {
+                    water = 200
+                    milk = 100
+                    coffee = 12
+                    cost = 6
 
+                    waterInmachine -= water
+                    coffeeInmachine -= coffee
+                    milkInMachine -= milk
+                    money += cost
+                    cups -= 1
+
+                    println("The coffee machine has:\n" +
+                            "$waterInmachine ml of water\n" +
+                            "$milkInMachine ml of milk\n" +
+                            "$coffeeInmachine g of coffee beans\n" +
+                            "$cups disposable cups\n" +
+                            "$money of money")
                 }
             }
 
 
 
-            print("Write how many ml of water the coffee machine has: > ")
-            val waterInmachine = readln().toInt()
-            print("Write how many ml of milk the coffee machine has: > ")
-            val milkInMachine = readln().toInt()
-            print("Write how many grams of coffee beans the coffee machine has: > ")
-            val coffeeInmachine = readln().toInt()
-            print("Write how many cups of coffee you will need: > ")
-            val input = readln().toInt()
-
-//            val cInCup = coffee * input
-//            val wInCup = water * input
-//            val mInCup = milk * input
-            val totWater = waterInmachine / water
-            val totMilk = milkInMachine / milk
-            val totCoffee = coffeeInmachine / coffee
 
 
-            val totalCups = if (totCoffee < totMilk && totCoffee < totWater) {
-                totCoffee
-            } else if (totWater < totMilk && totWater < totCoffee) {
-                totWater
-            } else {
-                totMilk
-            }
-
-
-
-            if (totalCups > input) {
-                val N = totalCups - input
-                println("Yes, I can make that amount of coffee (and even $N more than that)")
-            } else if (totalCups == input) {
-                println("Yes, I can make that amount of coffee")
-            } else {
-                println("No, I can make only $totalCups cups of coffee")
-            }
-
-
-            /*println("For $input cups of coffee you will need:\n" +
-                    "$wInCup ml of water\n" +
-                    "$mInCup ml of milk\n" +
-                    "$cInCup g of coffee beans")
-
-
-
-
-            println("""Starting to make a coffee
-        Grinding coffee beans
-        Boiling water
-        Mixing boiled water with crushed coffee beans
-        Pouring coffee into the cup
-        Pouring some milk into the cup
-        Coffee is ready!""")*/
+//
 
         }
 
         "fill" -> {
+                print("Write how many ml of water you want to add: > ")
+                val addWater = readln().toInt()
+                print("Write how many ml of milk you want to add: > ")
+                val addMilk = readln().toInt()
+                print("Write how many grams of coffee beans you want to add: > ")
+                val addCoffee = readln().toInt()
+                print("Write how many disposable cups you want to add > ")
+                val addCups = readln().toInt()
+
+                waterInmachine += addWater
+                milkInMachine += addMilk
+                coffeeInmachine += addCoffee
+                cups += addCups
+
+                println()
+                println("The coffee machine has:\n" +
+                        "$waterInmachine ml of water\n" +
+                        "$milkInMachine ml of milk\n" +
+                        "$coffeeInmachine g of coffee beans\n" +
+                        "$cups disposable cups\n" +
+                        "$money of money")
 
 
         }
 
         "take" -> {
 
+                println("I gave you \$$money")
+                money -= money
+                println()
+                println("The coffee machine has:\n" +
+                    "$waterInmachine ml of water\n" +
+                    "$milkInMachine ml of milk\n" +
+                    "$coffeeInmachine g of coffee beans\n" +
+                    "$cups disposable cups\n" +
+                    "$money of money")
         }
     }
 }
